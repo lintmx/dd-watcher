@@ -4,7 +4,7 @@
 
 ## 项目由来
 
-最近沉迷写~~监视器~~[dd-recorder](https://github.com/lintmx/recorder)，
+最近沉迷写~~监视器~~[dd-recorder](https://github.com/lintmx/dd-recorder)，
 结果差点错过直播，所以就把直播间状态监控功能提取出来加上通知，
 变成一个单纯的全平台直播间状态监控器。
 
