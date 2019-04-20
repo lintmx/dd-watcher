@@ -14,6 +14,10 @@
 解压后配置好 `config.yml`，
 然后执行二进制程序，保持程序窗口，这样就不怕错过直播了。
 
+## Thanks
+
+[beeep](https://github.com/gen2brain/beeep) Go cross-platform library for sending desktop notifications, alerts and beeps
+
 ## License
 
 MIT
