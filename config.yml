@@ -1,0 +1,10 @@
+# 监听间隔 (秒)
+interval: 20
+# Http 代理 (注释以关闭)
+proxy: http://127.0.0.1:8010
+# 房间地址
+rooms:
+  - https://live.bilibili.com/12235923
+  - https://live.bilibili.com/14917277
+  - https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw/live
+  - https://www.youtube.com/channel/UC1opHUrw8rvnsadT-iGp7Cg/live

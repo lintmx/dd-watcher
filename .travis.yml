@@ -1,0 +1,25 @@
+language: go
+go:
+- master
+
+env:
+  global:
+    - GO111MODULE=on
+
+install:
+  - "go mod download"
+
+before_deploy:
+  - "make release"
+
+deploy:
+  provider: releases
+  prerelease: true
+  skip_cleanup: true
+  api_key:
+    secure: rkeIIDcz1PaNC0Ohxhq8iJq8KGMnpys+BKr+ToIbURHuI0r1Q1h+V5jYCa42Z7mi6OMHmcBIBgjJhZ4lA/6kbnVDy05Qo9Auk/VDreHPOTuJZdzBe7wiS8FGMVywK7TE7dv9iLxJOXpfOnqQM27yXBIangPaxbN6JeUA1ofwP1v7IRwQe6K8O0qNLnKt+ZaxtCDW/vdfJJQwUsSlBG7KS9LlaOIdF3VENpEZBSgWA3mkD/iMW4E1t5Cf9MmWokKHcmlDPWWotMUVezINWSeJgszrXd409AOQ7INXUYuh9BPiiXpvuSVOtjTZAJJ8TxTqyRr0IhZ9+/95Q8IWN3vob3IDgCdkt3plZMb6WlXkEX7GLSr86LulzvAYenwopyf/+JjtoX4BdctIpQYXDvBAYrUmCAalMbhmaT7l5brg7OLbysf+OmRML5d11gLj4wI2Oo47a4POK20yz+SzGM7BYycfZ+AZB70GYIE4sv6ac6TJAJHjgw2DRM+lDDwkOtMdUXm663t+KX27zH7T0NL+nqEOUM8MAyxvYTAtqHtNeBDPRbGGtwk2bCQ4z86oXcJkjSy1F5eozZjYVUgDxYPSi2K5skqvm+jLsggcAfQUIv3JY+xGIrNb78cpG9mVRUJUUhI1mqx/VkBvUhw5nPRRnBkGRkfob+cnDs6SQ8Mfyn4=
+  file: bin/*
+  file_glob: true
+  on:
+    repo: lintmx/dd-recorder
+    tags: true
