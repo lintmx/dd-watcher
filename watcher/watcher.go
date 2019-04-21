@@ -60,6 +60,11 @@ func (w *Watcher) refresh() {
 				fmt.Fprintf(os.Stderr, "beeep err - %s\n", w.LiveAPI.GetLiveURL())
 				return
 			}
+		} else {
+			fmt.Fprintf(os.Stdout, "%s: %s - 下了，神回，没录，不烤\n",
+				time.Now().Format("2006-01-02 15:04:05"),
+				w.LiveAPI.GetAuthor(),
+			)
 		}
 	}
 }
