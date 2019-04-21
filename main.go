@@ -76,7 +76,7 @@ func main() {
 			wait.Add(1)
 			w := &watcher.Watcher{
 				LiveAPI:    api,
-				TimeTicker: time.NewTicker(time.Duration(config.Interval) * time.Second),
+				TimeTicker: time.Duration(config.Interval),
 				Wait:       &wait,
 			}
 			go w.Run(ctx)

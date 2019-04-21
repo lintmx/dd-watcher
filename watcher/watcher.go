@@ -14,14 +14,14 @@ import (
 type Watcher struct {
 	Wait       *sync.WaitGroup
 	LiveAPI    api.LiveAPI
-	TimeTicker *time.Ticker
+	TimeTicker time.Duration
 	LiveStatus bool
 }
 
 // Run a dd monitor
 func (w *Watcher) Run(ctx context.Context) {
+	timer := time.NewTimer(w.TimeTicker * time.Second)
 	defer w.Wait.Done()
-	defer w.TimeTicker.Stop()
 	fmt.Fprintf(os.Stdout, "开始监听： %s\n", w.LiveAPI.GetLiveURL())
 
 	w.refresh()
@@ -29,8 +29,9 @@ func (w *Watcher) Run(ctx context.Context) {
 		select {
 		case <-ctx.Done():
 			return
-		case <-w.TimeTicker.C:
+		case <-timer.C:
 			w.refresh()
+			timer.Reset(w.TimeTicker * time.Second)
 		}
 	}
 }
@@ -39,7 +40,7 @@ func (w *Watcher) Run(ctx context.Context) {
 func (w *Watcher) refresh() {
 	err := w.LiveAPI.RefreshLiveInfo()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "refersh err - %s : %s\n", w.LiveAPI.GetLiveURL(), err)
+		// fmt.Fprintf(os.Stderr, "refersh err - %s : %s\n", w.LiveAPI.GetLiveURL(), err)
 		return
 	}
 
