@@ -1,10 +1,12 @@
 package watcher
 
 import (
+	"runtime"
 	"context"
 	"fmt"
 	"github.com/gen2brain/beeep"
 	"github.com/lintmx/dd-watcher/api"
+	"github.com/axgle/mahonia"
 	"os"
 	"sync"
 	"time"
@@ -55,6 +57,12 @@ func (w *Watcher) refresh() {
 				body,
 				w.LiveAPI.GetLiveURL(),
 			)
+			// fix: windows need gbk
+			if runtime.GOOS == "windows" {
+				encoder := mahonia.NewEncoder("gbk")
+				title = encoder.ConvertString(title)
+				body = encoder.ConvertString(body)
+			}
 			err := beeep.Alert(title, body, "")
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "beeep err - %s\n", w.LiveAPI.GetLiveURL())

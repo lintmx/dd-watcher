@@ -3,6 +3,7 @@ module github.com/lintmx/dd-watcher
 go 1.12
 
 require (
+	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
 	github.com/gen2brain/beeep v0.0.0-20190317152856-aa3d7c1499fd
 	github.com/godbus/dbus v4.1.0+incompatible // indirect
 	github.com/gorilla/websocket v1.4.0
